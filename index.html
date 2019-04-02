@@ -28,7 +28,9 @@
 
         map.on('click', function (evt) {
             var coord = map.getCoordinateFromPixel(evt.pixel);
-            alert(ol.proj.toLonLat(coord));
+            var longitude =ol.proj.toLonLat(coord)[0];
+            var latitude =ol.proj.toLonLat(coord)[1];
+            alert("Longitude: " + longitude + " | Latitude: " + latitude);
         });
     </script>
 </body>
