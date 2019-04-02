@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Map</title>
+    <link rel="stylesheet" href="css/ol.css" type="text/css">
+    <script src="js/ol.js"></script>
+</head>
+
+<body>
+    <div id="map" class="map"></div>
+    <script>
+        var center = ol.proj.transform([-0.118092, 51.5074], 'EPSG:4326', 'EPSG:3857');
+        var view = new ol.View({
+            center: center,
+            zoom: 11
+        });
+
+        var layer = new ol.layer.Tile({
+            source: new ol.source.OSM()
+        });
+
+        var map = new ol.Map({
+            layers: [layer],
+            target: 'map',
+            view: view
+        });
+
+        map.on('click', function (evt) {
+            var coord = map.getCoordinateFromPixel(evt.pixel);
+            alert(ol.proj.toLonLat(coord));
+        });
+    </script>
+</body>
+
+</html>
