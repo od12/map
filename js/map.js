@@ -18,5 +18,17 @@ map.on('click', function (evt) {
     var coord = map.getCoordinateFromPixel(evt.pixel);
     var longitude =ol.proj.toLonLat(coord)[0];
     var latitude =ol.proj.toLonLat(coord)[1];
-    alert("Longitude: " + longitude + " | Latitude: " + latitude);
+
+    getPostCode(longitude,latitude); //Get and alert postcode with coordinates
 });
+
+function getPostCode(longitude,latitude){
+    const url="http://api.postcodes.io/postcodes?lon="+longitude+"&lat="+latitude;
+    $.getJSON(url, function(data) {
+        //data is the JSON string
+        var response = data;
+        var postcode = response.result[0].postcode; //Nearest postcode for the given coordinate
+        alert("Longitude: " + longitude + " | Latitude: " + latitude + " | Postcode: " + postcode);
+    });
+}
+
