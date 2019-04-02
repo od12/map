@@ -23,7 +23,7 @@ map.on('click', function (evt) {
 });
 
 function getPostCode(longitude,latitude){
-    const url="http://api.postcodes.io/postcodes?lon="+longitude+"&lat="+latitude;
+    const url="https://api.postcodes.io/postcodes?lon="+longitude+"&lat="+latitude;
     $.getJSON(url, function(data) {
         //data is the JSON string
         var response = data;
