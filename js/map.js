@@ -22,9 +22,9 @@ map.on('click', function (evt) {
     getPostCode(longitude,latitude); //Get and alert postcode with coordinates
 });
 
-map.getView().on('change:resolution', function(evt){
+map.on('moveend', function(evt){
     var zoom = map.getView().getZoom();
-    if (zoom > 16 && zoom <16.1) {
+    if (zoom > 16) {
         getCrimeData(map);
     }
 });
