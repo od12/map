@@ -14,14 +14,16 @@ var map = new ol.Map({
     view: view
 });
 
+//When a user clicks on the map, this gets the coordinates of the click and calls the postcode function (FOR TESTING ONLY)
 map.on('click', function (evt) {
     var coord = map.getCoordinateFromPixel(evt.pixel);
     var longitude =ol.proj.toLonLat(coord)[0];
     var latitude =ol.proj.toLonLat(coord)[1];
 
-    getPostCode(longitude,latitude); //Get and alert postcode with coordinates
+    getPostCode(longitude,latitude); 
 });
 
+//When the map is moved and is above a certain zoom, we can call the crime API
 map.on('moveend', function(evt){
     var zoom = map.getView().getZoom();
     if (zoom > 16) {
@@ -60,8 +62,8 @@ function getCrimeData(map){
     const url = "https://data.police.uk/api/crimes-street/all-crime?poly="+bottom_left+":"+bottom_right+":"+top_left+":"+top_right;
     console.log(url);
     $.getJSON(url, function(data) {
-        //data is the JSON string
         console.log(data);
+        //Instead display the data on the map
     });
 }
 
